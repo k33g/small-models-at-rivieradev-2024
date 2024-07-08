@@ -1,0 +1,8 @@
+ollama
+langchain
+langchain-community
+streamlit
+
+#chromadb
+
+

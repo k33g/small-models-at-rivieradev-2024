@@ -1,0 +1,60 @@
+services:
+  ollama-service:
+    profiles: [ollma-in-docker]
+    image: ollama/ollama:0.1.47 # a best practice is to use fixed tag for the image
+    volumes:
+      - ./ollama:/root/.ollama
+    ports:
+      - 11434:11434
+    # Ollama can run with GPU acceleration inside Docker containers for Nvivia GPUs
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: 1
+    #          capabilities: [gpu]
+
+
+  download-llm-data:
+    profiles: [ollma-in-docker]
+    image: curlimages/curl:8.6.0
+    entrypoint: ["curl", "ollama-service:11434/api/pull", "-d", "{\"name\": \"${LLM}\"}"]
+    depends_on:
+      ollama-service:
+        condition: service_started
+
+  my-app-streamlit-memory:
+    profiles: [ollma-in-docker]
+    build: 
+      context: ./my-app
+      dockerfile: Dockerfile
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - LLM=${LLM}
+    ports:
+      - 8501:8501
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    depends_on:
+      ollama-service:
+        condition: service_started
+      download-llm-data:
+        condition: service_completed_successfully
+
+  my-app-streamlit-memory-only:
+    profiles: [application]
+    # On Linux:
+    # https://medium.com/@TimvanBaarsen/how-to-connect-to-the-docker-host-from-inside-a-docker-container-112b4c71bc66
+    #extra_hosts:
+    #  - "host.docker.internal:host-gateway"
+    build: 
+      context: ./my-app
+      dockerfile: Dockerfile
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - LLM=${LLM}
+    ports:
+      - 8501:8501
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t

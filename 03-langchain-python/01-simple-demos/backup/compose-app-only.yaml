@@ -1,0 +1,28 @@
+services:
+
+  my-app-only:
+    # On Linux:
+    # https://medium.com/@TimvanBaarsen/how-to-connect-to-the-docker-host-from-inside-a-docker-container-112b4c71bc66
+    #extra_hosts:
+    #  - "host.docker.internal:host-gateway"
+    build: 
+      context: ./my-app
+      dockerfile: Dockerfile
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - LLM=${LLM}
+
+
+    volumes:
+      - .:/workspace
+
+#    volumes: &volumes
+#      - .:/workspace
+#      - ~/.gitconfig:/etc/gitconfig
+#      - type: bind
+#        source: /var/run/docker.sock
+#        target: /var/run/docker.sock
+
+
+#volumes:
+#  ollama-data:
