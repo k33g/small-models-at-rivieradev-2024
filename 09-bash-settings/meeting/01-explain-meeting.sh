@@ -76,8 +76,10 @@ EOM
 # Make a summary of the transcript above
 # [Summary] Explain the transcript above
 read -r -d '' USER_CONTENT <<- EOM
-[Summary] Explain the above transcript
+Explain the above transcript
 EOM
+#[Summary] Explain the above transcript
+
 
 SYSTEM_CONTENT=$(Sanitize "${SYSTEM_CONTENT}")
 CONTEXT_CONTENT=$(Sanitize "${CONTEXT_CONTENT}")

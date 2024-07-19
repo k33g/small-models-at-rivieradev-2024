@@ -4,11 +4,11 @@
 
 OLLAMA_URL=${OLLAMA_URL:-http://localhost:11434}
 
-MODEL="phi3:mini"
+#MODEL="phi3:mini"
 #MODEL="tinyllama"
 #MODEL="qwen:0.5b"
 #MODEL="tinydolphin"
-#MODEL="gemma:2b"
+MODEL="gemma:2b"
 #MODEL="qwen:0.5b" -> does not work
 #MODEL="tinyllama" -> does not work
 #MODEL="llama3" #-> does not work with chicken

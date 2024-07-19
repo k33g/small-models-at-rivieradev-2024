@@ -37,7 +37,7 @@ Output the results in JSON format and trim the spaces of the sentence.
 EOM
 
 read -r -d '' USER_CONTENT <<- EOM
-add 5 and 40
+say hello to bob
 EOM
 
 #read -r -d '' USER_CONTENT <<- EOM

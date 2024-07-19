@@ -30,7 +30,7 @@ func main() {
 
 	// 🖐️🖐️🖐️ Try with Temperature: 0.0
 	options := llm.Options{
-		Temperature: 0.5, // default (0.8)
+		Temperature: 0.0, // default (0.8)
 		RepeatLastN: 2, // default (64) the default value will "freeze" deepseek-coder
 	}
 

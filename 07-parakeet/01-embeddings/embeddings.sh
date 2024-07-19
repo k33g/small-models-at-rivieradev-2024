@@ -5,8 +5,8 @@
 OLLAMA_URL=${OLLAMA_URL:-http://localhost:11434}
 
 #MODEL="qwen:0.5b"
-#MODEL="tinyllama"
-MODEL="qwen2:0.5b" 
+MODEL="tinyllama"
+#MODEL="qwen2:0.5b" 
 
 EMBEDDINGS_MODEL="all-minilm"
 

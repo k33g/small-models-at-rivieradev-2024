@@ -85,10 +85,10 @@ USER_CONTENT=$(Sanitize "${USER_CONTENT}")
 #"top_k": 0.5
 #MODEL="stablelm2:latest" # 🟠
 #MODEL="gemma:2b" # 🟠
-#MODEL="phi3:mini" # 🟢
+MODEL="phi3:mini" # 🟢
 #MODEL="qwen2:0.5b" # 🔴
 #MODEL="tinyllama" # 🔴
-MODEL="tinydolphin" # 🔴
+#MODEL="tinydolphin" # 🔴
 
 read -r -d '' DATA <<- EOM
 {
